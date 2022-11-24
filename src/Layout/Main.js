@@ -4,10 +4,11 @@ import Navbar from '../shared/Navbar';
 import Footer from '../shared/Footer';
 
 const Main = () => {
+    
     return (
         <div>
             <Navbar/>
-            <div className='min-h-screen'>    
+            <div className='min-h-screen mx-4'>    
             <Outlet/>
             </div>
             <Footer/>
