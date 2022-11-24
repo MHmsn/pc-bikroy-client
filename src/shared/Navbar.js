@@ -1,14 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const navbarOptions = (
     <React.Fragment>
-      <li>
-        <Link to='/'>Home</Link>
+      <li className="mx-1">
+        <NavLink to='/'>Home</NavLink>
       </li>
-      <li>
-        <Link to='/services'>Services</Link>
+      <li className="mx-1">
+        <NavLink to='/products'>Products</NavLink>
+      </li>
+      <li className="mx-1">
+        <NavLink to='/dashboard'>Dashboard</NavLink>
       </li>
     </React.Fragment>
   );
@@ -40,7 +43,7 @@ const Navbar = () => {
               {navbarOptions}
             </ul>
           </div>
-          <Link className="btn btn-ghost normal-case text-xl">daisyUI</Link>
+          <Link to='/' className="btn btn-ghost normal-case text-xl">PC-Bikroy</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">
@@ -48,7 +51,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <Link className="btn">Get started</Link>
+          <Link to='/login' className="btn btn-outline">Log in</Link>
         </div>
       </div>
     </div>
