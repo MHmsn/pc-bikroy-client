@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 
 const Slider = () => {
@@ -10,7 +9,7 @@ const Slider = () => {
         showThumbs={false}
         className="my-5 rounded-xl "
         autoPlay={true}
-        interval={400000}
+        interval={3000}
         infiniteLoop={true}
         dynamicHeight={true}
         

@@ -1,12 +1,12 @@
 import React from 'react';
+import AdvertisedSection from '../../components/AdvertisedSection/AdvertisedSection';
 import Slider from '../../components/Slider';
 
 const Home = () => {
     return (
-        <div><div>
-            
+        <div>
         <Slider/>
-        </div>
+        <AdvertisedSection/>
         </div>
     );
 };

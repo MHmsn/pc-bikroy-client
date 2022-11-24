@@ -11,6 +11,9 @@ const Navbar = () => {
         <NavLink to='/products'>Products</NavLink>
       </li>
       <li className="mx-1">
+        <NavLink to='/blogs'>Blogs</NavLink>
+      </li>
+      <li className="mx-1">
         <NavLink to='/dashboard'>Dashboard</NavLink>
       </li>
     </React.Fragment>
