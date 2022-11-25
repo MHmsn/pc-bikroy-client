@@ -19,7 +19,7 @@ const Navbar = () => {
     </React.Fragment>
   );
   return (
-    <div>
+    <div id='navbar'>
       <div className="navbar bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
