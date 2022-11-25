@@ -1,16 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AllContext } from "../../contexts/AllContextProvider";
 
 const Register = () => {
+  const {createUser,setUser} = useContext(AllContext);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const handleRegister = (data) => {
+
+  const handleRegister = data => {
     console.log(data);
-  };
+    createUser(data.email, data.password)
+    .then(result => {
+        const user = result.user;
+        console.log(user)
+        setUser(user);
+        navigate('/');
+    })
+    .catch(e => console.error(e))
+  }
+
   return (
     <div className="flex min-h-screen justify-center items-center">
       <div className="mb-20 border-2 p-7 rounded-lg shadow-lg w-96">
@@ -78,10 +91,6 @@ const Register = () => {
             Log In
           </Link>
         </p>
-        <div className="divider my-5"> OR</div>
-        <button className="btn btn-primary btn-outline w-full">
-          CONTINUE WITH GOOGLE
-        </button>
       </div>
     </div>
   );

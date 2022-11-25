@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AllContext } from "../contexts/AllContextProvider";
 
 const Navbar = () => {
+  const {user, logOut} = useContext(AllContext);
+  const handleLogOut = () =>{
+    logOut()
+    .then(() => {})
+    .catch(e => console.error(e.message))
+  }
   const navbarOptions = (
     <React.Fragment>
       <li className="mx-1">
@@ -13,9 +20,9 @@ const Navbar = () => {
       <li className="mx-1">
         <NavLink to='/blogs'>Blogs</NavLink>
       </li>
-      <li className="mx-1">
+      {user?.uid && <li className="mx-1">
         <NavLink to='/dashboard'>Dashboard</NavLink>
-      </li>
+      </li>}
     </React.Fragment>
   );
   return (
@@ -54,7 +61,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <Link to='/login' className="btn btn-outline">Log in</Link>
+          {user?.uid ? <button onClick={handleLogOut} className="btn btn-outline">Log Out</button>:<Link to='/login' className="btn btn-outline">Log in</Link>}
         </div>
       </div>
     </div>
