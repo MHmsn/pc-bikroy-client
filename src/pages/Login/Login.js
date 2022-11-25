@@ -1,9 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AllContext } from "../../contexts/AllContextProvider";
 
 const Login = () => {
+  useEffect(() => {
+    document.title = "Login";
+  }, []);
   const {login} = useContext(AllContext);
   const location = useLocation();
   const navigate = useNavigate();

@@ -49,6 +49,7 @@ const ContextProvider = ({ children }) => {
     user,
     loading,
     setUser,
+    providerLogin,
     createUser,
     logOut,
   };

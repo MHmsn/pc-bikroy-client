@@ -1,9 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AllContext } from "../../contexts/AllContextProvider";
 
 const Register = () => {
+  useEffect(() => {
+    document.title = "Register";
+  }, []);
   const {createUser,setUser} = useContext(AllContext);
   const navigate = useNavigate();
   const {
@@ -79,6 +82,21 @@ const Register = () => {
           {errors.password && (
             <p className="text-red-600">{errors.password?.message}</p>
           )}
+          <div className="form-control w-full max-w-xs">
+            <label>
+              <span className="label-text text-lg">User type</span>
+            </label>
+            <select
+              className="mt-3 input input-bordered w-full max-w-xs"
+              type="email"
+              defaultValue='Select type of user'
+              {...register("userType", { required: "This field is required" })}
+            >
+              <option disabled>Select type of user</option>
+              <option>Buyer</option>
+              <option>Seller</option>
+            </select>
+          </div>
           <input
             type="submit"
             value="Register"

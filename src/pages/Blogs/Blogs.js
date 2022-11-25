@@ -13,12 +13,12 @@ const Blogs = () => {
             <h2>What are the different ways to manage a state in a React application?</h2>
           </div>
           <div className="collapse-content bg-slate-900">
-            <p className="pt-4 font-bold">
-              SQL databases are table based, but NoSQL databases are mostly
-              object or key-value based. So SQL is better for structured data
-              like tables. While NoSQL databases are better for unstructured
-              data like JSON. Also, SQL databases are vertically scalable but
-              NoSQL databases are horizontally scalable.
+            <p className="pt-4 font-bold text-start">
+              There are 4 ways to manage states in a React Application. <br/>
+              1. Local State: Local State is when the state is used in one component or another and used locally. <br/>
+              2. Global State: Global state is when a state variable is shared and updated across multiple component or pages. <br/>
+              3. Server State: Server state is when we save the data we get by fetch from a server in a state variable. <br/>
+              4. URL State: URL state is when we manage state which is inside a URL or query parameter.
             </p>
           </div>
         </div>
@@ -28,14 +28,8 @@ const Blogs = () => {
             <h2>How does prototypical inheritance work?</h2>
           </div>
           <div className="collapse-content bg-slate-900">
-            <p className="pt-4 font-bold">
-              JWT stands for JSON Web Token. It helps to encrypt the user data
-              so that the data does not fall into the wrong hands. Also, it
-              issues a token for authentication, which can be decrypted and used
-              for authentication purposes. The token can be stored on local
-              storage but it is not recommended. it is mostly stored on http
-              only cookie. this token can be sent with API and then decoded to
-              authenticate the user.
+            <p className="pt-4 font-bold text-start">
+              prototypical inheritance is a feature in JavaScript by which we can add methods and properties in an object. It is a method by which the properties and methods of an object can be inherited by a child object. "ChildObject.__proto__ = ParentObject" we use this syntax for prototypical inheritance.
             </p>
           </div>
         </div>
@@ -45,14 +39,8 @@ const Blogs = () => {
             <h2>What is a unit test? Why should we write unit tests?</h2>
           </div>
           <div className="collapse-content bg-slate-900">
-            <p className="pt-4 font-bold">
-              JavaScript is a simple scripting language which is used for
-              creating interactive web pages. While node.js is a JavaScript
-              runtime environment. Usually JavaScript can run only in the
-              browser. but with node.js, now javascript code can be executed
-              outside of the browser as well. JavaScript is used for frontend
-              web development while Node.js is used for backend web development
-              in the server side.
+            <p className="pt-4 font-bold text-start">
+              unit test is a technique to isolate a written code and test it to determine if the code is written properly. It is a very important step as it helps us to debug our applications and find out the problems in that code unit. By this we can detect any flaw in our code early which could be more difficult to find later. 
             </p>
           </div>
         </div>
@@ -62,14 +50,8 @@ const Blogs = () => {
             <h2>React vs. Angular vs. Vue?</h2>
           </div>
           <div className="collapse-content bg-slate-900">
-            <p className="pt-4 font-bold">
-              Node JS handle multiple request at the same time by one of it's
-              main features, event loop. Event loop allows Node JS to run
-              asynchronous functions. As it is normally single threaded, it
-              handles one request at a time. but for asynchronous functions, it
-              sets that asynchronous function aside from the call stack, and
-              starts working on the next requests. This method allows node to do
-              multiple tasks at the same time even though it is single threaded.
+            <p className="pt-4 font-bold text-start">
+              React is suitable for intermediate to advanced JavaScript developers who know about ES6 concepts and up. While Angular is for those developers who are familiar with TypeScript. And Vue is more suitable for new developers who are not that much familiar with JavaScript concepts. React is based on components and extra modules, Angular is more of a All-in-one which does not need any extras, while Vue is suited for creating small less complex apps and it is easier to learn compared to other frameworks.
             </p>
           </div>
         </div>

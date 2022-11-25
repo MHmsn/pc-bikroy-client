@@ -22,7 +22,7 @@ const ProductCategories = () => {
       <h2 className="text-3xl font-bold">Browse Products: </h2>
       <br />
       {categories.map((category) => (
-        <Link key={category._id} to={`/products/${category.name}`}>
+        <Link key={category._id} to={`/products/${category._id}`}>
           <button className="mx-2 btn btn-primary">{category.name}</button>
         </Link>
       ))}

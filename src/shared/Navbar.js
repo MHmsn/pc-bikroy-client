@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AllContext } from "../contexts/AllContextProvider";
+import cpu from '../cpu.png';
 
 const Navbar = () => {
   const {user, logOut} = useContext(AllContext);
@@ -53,7 +54,7 @@ const Navbar = () => {
               {navbarOptions}
             </ul>
           </div>
-          <Link to='/' className="btn btn-ghost normal-case text-xl">PC-Bikroy</Link>
+          <Link to='/' className="btn btn-ghost normal-case text-xl"><img src={cpu} alt=''/>PC-Bikroy</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">
