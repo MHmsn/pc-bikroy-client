@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import AdvertisedSection from '../../components/AdvertisedSection/AdvertisedSection';
+import HomeHero from '../../components/HomeHero';
 import Slider from '../../components/Slider';
 
 const Home = () => {
@@ -10,6 +11,7 @@ const Home = () => {
         <div>
         <Slider/>
         <AdvertisedSection/>
+        <HomeHero/>
         </div>
     );
 };

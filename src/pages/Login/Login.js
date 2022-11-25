@@ -6,6 +6,7 @@ const Login = () => {
   const {
     register,
     handleSubmit,
+    formState: { errors },
   } = useForm();
   const handleLogin = (data) => {
     console.log(data);
@@ -24,11 +25,12 @@ const Login = () => {
               type="email"
               {...register("email", { required: "Email Address is required" })}
             />
-            
+
+            {errors.email && (
               <p className="mt-2 text-red-600" role="alert">
-                error message
+                {errors.email?.message}
               </p>
-            
+            )}
           </div>
           <div className="form-control w-full max-w-xs mt-3">
             <label>
@@ -46,10 +48,11 @@ const Login = () => {
               })}
             />
 
-            
+            {errors.password && (
               <p className="mt-2 text-red-600" role="alert">
-                error message
+                {errors.password?.message}
               </p>
+            )}
           </div>
 
           <input
@@ -62,13 +65,15 @@ const Login = () => {
           </div>
         </form>
         <p>
-          First time in PC-Bikroy?{' '}
+          First time in PC-Bikroy?{" "}
           <Link to="/register" className="text-primary underline text-sm">
             Create new account
           </Link>
         </p>
         <div className="divider my-5"> OR</div>
-        <button className="btn btn-primary btn-outline w-full">CONTINUE WITH GOOGLE</button>
+        <button className="btn btn-primary btn-outline w-full">
+          CONTINUE WITH GOOGLE
+        </button>
       </div>
     </div>
   );
