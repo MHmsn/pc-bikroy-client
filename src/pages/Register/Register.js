@@ -1,28 +1,60 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AllContext } from "../../contexts/AllContextProvider";
+import useToken from "../../hooks/useToken";
 
 const Register = () => {
   useEffect(() => {
     document.title = "Register";
   }, []);
-  const {createUser,setUser} = useContext(AllContext);
+  const {createUser, setUser, user, setUserFromDB} = useContext(AllContext);
   const navigate = useNavigate();
+  const[userEmail, setUserEmail] = useState('');
+  const [token] = useToken(userEmail);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  if(token && user){
+    navigate('/');
+  }
+
+  const saveUser = info => {
+    fetch('http://localhost:5000/users',{
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(info)
+    })
+    .then(res =>res.json())
+    .then(data => {
+      console.log(data)
+      setUserEmail(info.email)
+      setUserFromDB(info)
+  })
+    .catch(e => console.log(e))
+  }
+
   const handleRegister = data => {
     console.log(data);
+    
     createUser(data.email, data.password)
     .then(result => {
         const user = result.user;
         console.log(user)
         setUser(user);
-        navigate('/');
+        const userInfo = {
+          name: data.name,
+          email: data.email,
+          role: data.userType,
+          uid: user.uid,
+          verified: false
+        }
+        saveUser(userInfo);
     })
     .catch(e => console.error(e))
   }
@@ -89,10 +121,8 @@ const Register = () => {
             <select
               className="mt-3 input input-bordered w-full max-w-xs"
               type="email"
-              defaultValue='Select type of user'
               {...register("userType", { required: "This field is required" })}
             >
-              <option disabled>Select type of user</option>
               <option>Buyer</option>
               <option>Seller</option>
             </select>

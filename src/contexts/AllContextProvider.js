@@ -15,6 +15,7 @@ const auth = getAuth(app);
 
 const ContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [userFromDB, setUserFromDB] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const login = (email, password) => {
@@ -47,8 +48,10 @@ const ContextProvider = ({ children }) => {
   const allInfo = {
     login,
     user,
-    loading,
     setUser,
+    userFromDB,
+    setUserFromDB,
+    loading,
     providerLogin,
     createUser,
     logOut,

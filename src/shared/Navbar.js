@@ -1,13 +1,17 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AllContext } from "../contexts/AllContextProvider";
 import cpu from '../cpu.png';
 
 const Navbar = () => {
   const {user, logOut} = useContext(AllContext);
+  const navigate = useNavigate();
   const handleLogOut = () =>{
     logOut()
-    .then(() => {})
+    .then(() => {
+      localStorage.setItem('accessToken', '');
+      navigate('/');
+    })
     .catch(e => console.error(e.message))
   }
   const navbarOptions = (
