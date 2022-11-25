@@ -4,11 +4,14 @@ import './index.css';
 import App from './App';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import reportWebVitals from './reportWebVitals';
+import AllContextProvider from '../src/contexts/AllContextProvider'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <AllContextProvider>
     <App />
+    </AllContextProvider>
   </React.StrictMode>
 );
 

@@ -1,15 +1,29 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AllContext } from "../../contexts/AllContextProvider";
 
 const Login = () => {
+  const {login} = useContext(AllContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
+  const [error, setError] = useState('');
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const handleLogin = (data) => {
-    console.log(data);
+    setError('');
+    login(data.email, data.password)
+    .then(res => {
+      console.log(res.user);
+        navigate(from, { replace: true });
+      })
+      .catch((e) => {
+        setError(e.message);
+      });
   };
   return (
     <div className="flex min-h-screen justify-center items-center">
@@ -61,7 +75,7 @@ const Login = () => {
             className="btn btn-primary btn-outline my-5 w-full"
           />
           <div className="my-2">
-            <p className=" text-red-500">login error</p>
+            {<p className=" text-red-500">{error}</p>}
           </div>
         </form>
         <p>

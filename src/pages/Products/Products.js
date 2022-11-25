@@ -1,9 +1,12 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
+import ProductCategories from '../../components/ProductCategories';
 
 const Products = () => {
     return (
         <div>
-            This is Products
+                <ProductCategories/>
+                <Outlet/>
         </div>
     );
 };
