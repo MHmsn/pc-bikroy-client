@@ -5,6 +5,7 @@ import AllBuyers from '../pages/AllBuyers/AllBuyers';
 import AllSellers from '../pages/AllSellers/AllSellers';
 import Blogs from '../pages/Blogs/Blogs';
 import Dashboard from '../pages/Dashboard/Dashboard';
+import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import Home from '../pages/Home/Home';
 import Login from '../pages/Login/Login';
 import MyProducts from '../pages/MyProducts/MyProducts';
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Main/>,
+        errorElement: <ErrorPage/>,
         children:[
             {
                 path: '/',

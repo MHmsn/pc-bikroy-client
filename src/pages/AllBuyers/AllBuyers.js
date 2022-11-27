@@ -7,7 +7,7 @@ const AllBuyers = () => {
     const { loading } = useContext(AllContext);
 
   const url = `http://localhost:5000/users?role=Buyer`;
-  const { data: buyers = [], isLoading } = useQuery({
+  const { data: buyers = [], isLoading, refetch } = useQuery({
     queryKey: ["buyers"],
     queryFn: async () => {
       const res = await fetch(url, {
@@ -19,8 +19,11 @@ const AllBuyers = () => {
       return data;
     },
   });
+  const handleDelete = email => {
+    fetch('http://localhost:5000/users?role=Seller')
+  }
   if(loading || isLoading)
-    return<Loading/>
+    return <Loading/>;
     return (
         <div>
             <h2 className='text-3xl mb-5'> All Buyers</h2>
@@ -40,7 +43,7 @@ const AllBuyers = () => {
                 <th>{i+1}</th>
                 <td>{buyer.name}</td>
                 <td>{buyer.email}</td>
-                <td><button className='btn btn-xs btn-outline'>Delete</button></td>
+                <td><button onClick={() => handleDelete(buyer.email)} className='btn btn-xs btn-outline'>Delete</button></td>
 
               </tr>
             ))}

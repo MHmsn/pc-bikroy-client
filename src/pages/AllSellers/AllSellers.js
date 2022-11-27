@@ -5,8 +5,7 @@ import Loading from '../../components/Loading';
 
 
 const AllSellers = () => {
-    const { loading } = useContext(AllContext);
-
+    const { userFromDB, loading } = useContext(AllContext);
   const url = `http://localhost:5000/users?role=Seller`;
   const { data: sellers = [], isLoading } = useQuery({
     queryKey: ["sellers"],
@@ -41,7 +40,7 @@ const AllSellers = () => {
                 <th>{i+1}</th>
                 <td>{seller.name}</td>
                 <td>{seller.email}</td>
-                <td><button className='btn btn-xs btn-error btn-outline mb-2'>Delete</button><br/><button className='btn btn-xs btn-success btn-outline'>Make Admin</button></td>
+                <td><button className='btn btn-xs btn-error btn-outline mb-2'>Delete</button><br/>{seller.verified ? <button className='btn btn-xs btn-success btn-outline' disabled>Verified</button>:<button className='btn btn-xs btn-success btn-outline'>Verify</button>}</td>
 
               </tr>
             ))}

@@ -8,7 +8,7 @@ const Register = () => {
   useEffect(() => {
     document.title = "Register";
   }, []);
-  const {createUser, setUser, user, setUserFromDB} = useContext(AllContext);
+  const {createUser, setUser,  setUserFromDB} = useContext(AllContext);
   const navigate = useNavigate();
   const[userEmail, setUserEmail] = useState('');
   const [token] = useToken(userEmail);
@@ -18,10 +18,10 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  if(token && user){
+  if(token){
     navigate('/');
   }
-
+ 
   const saveUser = info => {
     fetch('http://localhost:5000/users',{
       method: 'POST',
@@ -32,21 +32,16 @@ const Register = () => {
     })
     .then(res =>res.json())
     .then(data => {
-      console.log(data);
       setUserFromDB(info);
       setUserEmail(info.email);
-      
   })
     .catch(e => console.log(e))
   }
 
   const handleRegister = data => {
-    console.log(data);
-    
     createUser(data.email, data.password)
     .then(result => {
         const user = result.user;
-        console.log(user)
         setUser(user);
         const userInfo = {
           name: data.name,
