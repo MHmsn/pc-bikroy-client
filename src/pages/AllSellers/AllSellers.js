@@ -2,12 +2,13 @@ import React, { useContext } from 'react';
 import { AllContext } from '../../contexts/AllContextProvider';
 import { useQuery } from "@tanstack/react-query";
 import Loading from '../../components/Loading';
+import toast from 'react-hot-toast';
 
 
 const AllSellers = () => {
-    const { userFromDB, loading } = useContext(AllContext);
+    const { loading } = useContext(AllContext);
   const url = `http://localhost:5000/users?role=Seller`;
-  const { data: sellers = [], isLoading } = useQuery({
+  const { data: sellers = [], isLoading, refetch } = useQuery({
     queryKey: ["sellers"],
     queryFn: async () => {
       const res = await fetch(url, {
@@ -19,6 +20,19 @@ const AllSellers = () => {
       return data;
     },
   });
+  const handleDelete = uid => {
+    fetch(`http://localhost:5000/users?uid=${uid}`, {
+        method: 'DELETE',
+        headers: {authorization:`bearer ${localStorage.getItem('accessToken')}`}
+    })
+    .then( res => res.json())
+    .then(data => {
+        if(data.acknowledged === true){
+            toast.success('user deleted successfully');
+            refetch();
+        }
+    })
+  }
   if(loading || isLoading)
     return<Loading/>
     return (
@@ -40,7 +54,7 @@ const AllSellers = () => {
                 <th>{i+1}</th>
                 <td>{seller.name}</td>
                 <td>{seller.email}</td>
-                <td><button className='btn btn-xs btn-error btn-outline mb-2'>Delete</button><br/>{seller.verified ? <button className='btn btn-xs btn-success btn-outline' disabled>Verified</button>:<button className='btn btn-xs btn-success btn-outline'>Verify</button>}</td>
+                <td><button onClick={() => handleDelete(seller.uid)} className='btn btn-xs btn-error btn-outline mb-2'>Delete</button><br/>{seller.verified ? <button className='btn btn-xs btn-success btn-outline' disabled>Verified</button>:<button className='btn btn-xs btn-success btn-outline'>Verify</button>}</td>
 
               </tr>
             ))}

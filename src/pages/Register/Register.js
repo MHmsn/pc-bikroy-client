@@ -8,9 +8,9 @@ const Register = () => {
   useEffect(() => {
     document.title = "Register";
   }, []);
-  const {createUser, setUser,  setUserFromDB} = useContext(AllContext);
+  const { userFromDB, createUser, setUser, setUserFromDB } = useContext(AllContext);
   const navigate = useNavigate();
-  const[userEmail, setUserEmail] = useState('');
+  const [userEmail, setUserEmail] = useState("");
   const [token] = useToken(userEmail);
   const {
     register,
@@ -18,29 +18,29 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  if(token){
-    navigate('/');
-  }
- 
-  const saveUser = info => {
-    fetch('http://localhost:5000/users',{
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(info)
-    })
-    .then(res =>res.json())
-    .then(data => {
-      setUserFromDB(info);
-      setUserEmail(info.email);
-  })
-    .catch(e => console.log(e))
+  if (token && userFromDB) {
+    return navigate("/");
   }
 
-  const handleRegister = data => {
+  const saveUser = (info) => {
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(info),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setUserFromDB(info);
+        setUserEmail(info.email);
+      })
+      .catch((e) => console.log(e));
+  };
+
+  const handleRegister = (data) => {
     createUser(data.email, data.password)
-    .then(result => {
+      .then((result) => {
         const user = result.user;
         setUser(user);
         const userInfo = {
@@ -48,12 +48,12 @@ const Register = () => {
           email: data.email,
           role: data.userType,
           uid: user.uid,
-          verified: false
-        }
+          verified: false,
+        };
         saveUser(userInfo);
-    })
-    .catch(e => console.error(e))
-  }
+      })
+      .catch((e) => console.error(e));
+  };
 
   return (
     <div className="flex min-h-screen justify-center items-center">

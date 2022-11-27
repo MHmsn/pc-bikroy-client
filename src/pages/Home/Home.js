@@ -11,9 +11,10 @@ const Home = () => {
     return (
         <div>
         <Slider/>
+        <ProductCategories/>
         <AdvertisedSection/>
         <HomeHero/>
-        <ProductCategories/>
+        
         </div>
     );
 };

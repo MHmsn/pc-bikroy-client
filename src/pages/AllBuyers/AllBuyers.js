@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AllContext } from '../../contexts/AllContextProvider';
 import { useQuery } from "@tanstack/react-query";
 import Loading from '../../components/Loading';
-
+import { toast } from "react-hot-toast";
 const AllBuyers = () => {
     const { loading } = useContext(AllContext);
 
@@ -19,8 +19,18 @@ const AllBuyers = () => {
       return data;
     },
   });
-  const handleDelete = email => {
-    fetch('http://localhost:5000/users?role=Seller')
+  const handleDelete = uid => {
+    fetch(`http://localhost:5000/users?uid=${uid}`, {
+        method: 'DELETE',
+        headers: {authorization:`bearer ${localStorage.getItem('accessToken')}`}
+    })
+    .then( res => res.json())
+    .then(data => {
+        if(data.acknowledged === true){
+            toast.success('user deleted successfully');
+            refetch();
+        }
+    })
   }
   if(loading || isLoading)
     return <Loading/>;
@@ -43,7 +53,7 @@ const AllBuyers = () => {
                 <th>{i+1}</th>
                 <td>{buyer.name}</td>
                 <td>{buyer.email}</td>
-                <td><button onClick={() => handleDelete(buyer.email)} className='btn btn-xs btn-outline'>Delete</button></td>
+                <td><button onClick={() => handleDelete(buyer.uid)} className='btn btn-xs btn-outline'>Delete</button></td>
 
               </tr>
             ))}
