@@ -8,11 +8,15 @@ import Dashboard from '../pages/Dashboard/Dashboard';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import Home from '../pages/Home/Home';
 import Login from '../pages/Login/Login';
+import MyOrders from '../pages/MyOrders/MyOrders';
 import MyProducts from '../pages/MyProducts/MyProducts';
 import Products from '../pages/Products/Products';
 import ProductsHome from '../pages/ProductsHome/ProductsHome';
 import Register from '../pages/Register/Register';
+import AdminRoute from './AdminRoute/AdminRoute';
+import BuyerRoute from './BuyerRoute/BuyerRoute';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
+import SellerRoute from './SellerRoute/SellerRoute';
 
 const router = createBrowserRouter([
     {
@@ -56,23 +60,27 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard',
-                element: <Dashboard/>,
+                element: <PrivateRoute><Dashboard/></PrivateRoute>,
                 children:[
                     {
                         path: '/dashboard/addaproduct',
-                        element: <AddAProduct/>
+                        element: <SellerRoute><AddAProduct/></SellerRoute>
                     },
                     {
                         path: '/dashboard/allsellers',
-                        element: <AllSellers/>
+                        element: <AdminRoute><AllSellers/></AdminRoute>
                     },
                     {
                         path: '/dashboard/allbuyers',
-                        element: <AllBuyers/>
+                        element: <AdminRoute><AllBuyers/></AdminRoute>
+                    },
+                    {
+                        path: '/dashboard/myorders',
+                        element: <BuyerRoute><MyOrders/></BuyerRoute>
                     },
                     {
                         path: '/dashboard/myproducts',
-                        element: <MyProducts/>
+                        element: <SellerRoute><MyProducts/></SellerRoute>
                     }
                 ]
             }
