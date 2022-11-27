@@ -5,13 +5,21 @@ import App from './App';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import reportWebVitals from './reportWebVitals';
 import AllContextProvider from '../src/contexts/AllContextProvider'
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
 
+// Create a client
+const queryClient = new QueryClient()
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
     <AllContextProvider>
     <App />
     </AllContextProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
 

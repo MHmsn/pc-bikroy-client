@@ -1,6 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Main from '../Layout/Main';
 import AddAProduct from '../pages/AddAProduct/AddAProduct';
+import AllBuyers from '../pages/AllBuyers/AllBuyers';
+import AllSellers from '../pages/AllSellers/AllSellers';
 import Blogs from '../pages/Blogs/Blogs';
 import Dashboard from '../pages/Dashboard/Dashboard';
 import Home from '../pages/Home/Home';
@@ -27,6 +29,13 @@ const router = createBrowserRouter([
                     {
                         path:'/products',
                         element: <ProductsHome/>
+                    },
+                    {
+                        path:'/products/:id',
+                        element: <ProductsHome/>,
+                        loader: async ({params}) => {
+                            return fetch(`https://localhost:5000/products/${params.id}`)
+                          }
                     }
                     
                 ]
@@ -50,6 +59,14 @@ const router = createBrowserRouter([
                     {
                         path: '/dashboard/addaproduct',
                         element: <AddAProduct/>
+                    },
+                    {
+                        path: '/dashboard/allsellers',
+                        element: <AllSellers/>
+                    },
+                    {
+                        path: '/dashboard/allbuyers',
+                        element: <AllBuyers/>
                     },
                     {
                         path: '/dashboard/myproducts',

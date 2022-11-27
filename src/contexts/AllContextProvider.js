@@ -39,7 +39,19 @@ const ContextProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setLoading(false);
+      if(localStorage.getItem('accessToken') && currentUser){
+        fetch(`http://localhost:5000/user?email=${currentUser.email}`,{
+      headers: {
+        authorization: `bearer ${localStorage.getItem('accessToken')}`
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      setUserFromDB(data);
+    })
+      }
+      
+    setLoading(false);
     });
     return () => {
       unsubscribe();

@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import Loading from "../../components/Loading";
 import { AllContext } from "../../contexts/AllContextProvider";
 
 const Dashboard = () => {
-  const {userFromDB} = useContext(AllContext)
-  console.log(userFromDB);
+  const {userFromDB, loading} = useContext(AllContext);
   const adminOptions = (
     <React.Fragment>
       <li className="mb-4">
@@ -53,7 +53,7 @@ const Dashboard = () => {
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 bg-base-100 text-base-content">
             {/* <!-- Sidebar content here --> */}
-            {userFromDB?.role === 'Admin'? adminOptions: userFromDB?.role === 'Seller' ? sellerOptions: buyerOptions}
+            {loading? <Loading/>:userFromDB?.role === 'Admin'? adminOptions: userFromDB?.role === 'Seller' ? sellerOptions: buyerOptions}
           </ul>
         </div>
       </div>

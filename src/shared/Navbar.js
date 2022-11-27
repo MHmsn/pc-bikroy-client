@@ -4,12 +4,13 @@ import { AllContext } from "../contexts/AllContextProvider";
 import cpu from '../cpu.png';
 
 const Navbar = () => {
-  const {user, logOut} = useContext(AllContext);
+  const {user, logOut, setUserFromDB} = useContext(AllContext);
   const navigate = useNavigate();
   const handleLogOut = () =>{
     logOut()
     .then(() => {
       localStorage.setItem('accessToken', '');
+      setUserFromDB(null);
       navigate('/');
     })
     .catch(e => console.error(e.message))

@@ -32,9 +32,10 @@ const Register = () => {
     })
     .then(res =>res.json())
     .then(data => {
-      console.log(data)
-      setUserEmail(info.email)
-      setUserFromDB(info)
+      console.log(data);
+      setUserFromDB(info);
+      setUserEmail(info.email);
+      
   })
     .catch(e => console.log(e))
   }

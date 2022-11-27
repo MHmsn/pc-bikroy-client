@@ -9,7 +9,7 @@ const Login = () => {
   useEffect(() => {
     document.title = "Login";
   }, []);
-  const { userFromDB, setUserFromDB, login, loading } = useContext(AllContext);
+  const { setUserFromDB, login, loading } = useContext(AllContext);
   const location = useLocation();
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState("");
@@ -21,7 +21,7 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+ 
   if(token){
     fetch(`http://localhost:5000/user?email=${userEmail}`,{
       headers: {
@@ -30,11 +30,9 @@ const Login = () => {
     })
     .then(res => res.json())
     .then(data => {
-      setUserFromDB(data)
-      console.log(userFromDB)
+      setUserFromDB(data);
       return navigate(from, {replace: true});
     })
-    
   }
 
   const handleLogin = (data) => {
