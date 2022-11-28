@@ -1,3 +1,4 @@
+import { GoogleAuthProvider } from "firebase/auth";
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -9,7 +10,9 @@ const Login = () => {
   useEffect(() => {
     document.title = "Login";
   }, []);
-  const { setUserFromDB, login, loading } = useContext(AllContext);
+  const { setUserFromDB, login, loading, providerLogin } =
+    useContext(AllContext);
+  const googleProvider = new GoogleAuthProvider();
   const location = useLocation();
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState("");
@@ -21,19 +24,48 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
- 
-  if(token){
-    fetch(`http://localhost:5000/user?email=${userEmail}`,{
+
+  if (token) {
+    fetch(`http://localhost:5000/user?email=${userEmail}`, {
       headers: {
-        authorization: `bearer ${localStorage.getItem('accessToken')}`
-      }
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
     })
-    .then(res => res.json())
-    .then(data => {
-      setUserFromDB(data);
-      return navigate(from, {replace: true});
-    })
+      .then((res) => res.json())
+      .then((data) => {
+        setUserFromDB(data);
+        return navigate(from, { replace: true });
+      });
   }
+  const handleProviderLogin = () => {
+    setError("");
+    providerLogin(googleProvider)
+      .then((res) => {
+        const user = res.user;
+        const info = {
+          name: user.displayName,
+          email: user.email,
+          role: "Buyer",
+          uid: user.uid,
+          verified: false,
+        };
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(info),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            setUserEmail(info.email);
+          })
+          .catch((e) => console.log(e));
+      })
+      .catch((e) => {
+        setError(e.message);
+      });
+  };
 
   const handleLogin = (data) => {
     setError("");
@@ -103,10 +135,13 @@ const Login = () => {
           </Link>
         </p>
         <div className="divider my-5"> OR</div>
-        <button className="btn btn-primary btn-outline w-full">
+        <button
+          onClick={handleProviderLogin}
+          className="btn btn-primary btn-outline w-full"
+        >
           CONTINUE WITH GOOGLE
         </button>
-        {loading && <Loading/>}
+        {loading && <Loading />}
       </div>
     </div>
   );

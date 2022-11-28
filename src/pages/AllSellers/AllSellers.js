@@ -3,7 +3,8 @@ import { AllContext } from '../../contexts/AllContextProvider';
 import { useQuery } from "@tanstack/react-query";
 import Loading from '../../components/Loading';
 import toast from 'react-hot-toast';
-
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const AllSellers = () => {
     const { loading } = useContext(AllContext);
@@ -20,6 +21,19 @@ const AllSellers = () => {
       return data;
     },
   });
+  const handleVerify = uid => {
+    fetch(`http://localhost:5000/users/verify?uid=${uid}`, {
+        method: 'PUT',
+        headers: {authorization:`bearer ${localStorage.getItem('accessToken')}`}
+    })
+    .then( res => res.json())
+    .then(data => {
+        if(data.acknowledged === true){
+            toast.success('user verified successfully');
+            refetch();
+        }
+    })
+  }
   const handleDelete = uid => {
     fetch(`http://localhost:5000/users?uid=${uid}`, {
         method: 'DELETE',
@@ -52,9 +66,9 @@ const AllSellers = () => {
             {sellers.map((seller, i) => (
               <tr key={seller._id}>
                 <th>{i+1}</th>
-                <td>{seller.name}</td>
+                <td>{seller.name}{seller.verified && <FontAwesomeIcon className='ml-2 text-blue-500' icon={faCheckCircle} />}</td>
                 <td>{seller.email}</td>
-                <td><button onClick={() => handleDelete(seller.uid)} className='btn btn-xs btn-error btn-outline mb-2'>Delete</button><br/>{seller.verified ? <button className='btn btn-xs btn-success btn-outline' disabled>Verified</button>:<button className='btn btn-xs btn-success btn-outline'>Verify</button>}</td>
+                <td><button onClick={() => handleDelete(seller.uid)} className='btn btn-xs btn-error btn-outline mb-2'>Delete</button><br/>{seller.verified ? <button onClick={() => handleVerify(seller.uid)} className='btn btn-xs btn-success btn-outline'>cancel verification</button>:<button onClick={() => handleVerify(seller.uid)} className='btn btn-xs btn-success btn-outline'>Verify</button>}</td>
 
               </tr>
             ))}
