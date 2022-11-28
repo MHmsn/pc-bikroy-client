@@ -11,6 +11,7 @@ import Login from '../pages/Login/Login';
 import MyOrders from '../pages/MyOrders/MyOrders';
 import MyProducts from '../pages/MyProducts/MyProducts';
 import Products from '../pages/Products/Products';
+import ProductsCategory from '../pages/ProductsCategory/ProductsCategory';
 import ProductsHome from '../pages/ProductsHome/ProductsHome';
 import Register from '../pages/Register/Register';
 import AdminRoute from './AdminRoute/AdminRoute';
@@ -38,9 +39,9 @@ const router = createBrowserRouter([
                     },
                     {
                         path:'/products/:id',
-                        element: <ProductsHome/>,
+                        element: <ProductsCategory/>,
                         loader: async ({params}) => {
-                            return fetch(`https://localhost:5000/products/${params.id}`)
+                            return fetch(`http://localhost:5000/products/${params.id}`)
                           }
                     }
                     

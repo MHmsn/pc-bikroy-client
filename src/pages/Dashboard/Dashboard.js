@@ -1,10 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import Loading from "../../components/Loading";
 import { AllContext } from "../../contexts/AllContextProvider";
 
 const Dashboard = () => {
   const {userFromDB, loading} = useContext(AllContext);
+  useEffect(() => {
+    document.title = "Dashboard";
+  }, []);
   const adminOptions = (
     <React.Fragment>
       <li className="mb-4">

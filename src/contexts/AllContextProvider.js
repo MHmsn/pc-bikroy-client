@@ -41,6 +41,7 @@ const ContextProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       if(localStorage.getItem('accessToken') && currentUser){
+        setLoading(true);
         fetch(`http://localhost:5000/user?email=${currentUser.email}`,{
       headers: {
         authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -49,10 +50,11 @@ const ContextProvider = ({ children }) => {
     .then(res => res.json())
     .then(data => {
       setUserFromDB(data);
+      setLoading(false);
     })
       }
-      
-    setLoading(false);
+      setLoading(false);
+    
     });
     return () => {
       unsubscribe();

@@ -50,7 +50,7 @@ const AllBuyers = () => {
           <tbody>
             {buyers.map((buyer, i) => (
               <tr key={buyer._id}>
-                <th>{i+1}</th>
+                <td>{i+1}</td>
                 <td>{buyer.name}</td>
                 <td>{buyer.email}</td>
                 <td><button onClick={() => handleDelete(buyer.uid)} className='btn btn-xs btn-outline'>Delete</button></td>
