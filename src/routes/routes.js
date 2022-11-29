@@ -14,6 +14,7 @@ import Products from '../pages/Products/Products';
 import ProductsCategory from '../pages/ProductsCategory/ProductsCategory';
 import ProductsHome from '../pages/ProductsHome/ProductsHome';
 import Register from '../pages/Register/Register';
+import ReportedItems from '../pages/ReportedItems/ReportedItems';
 import AdminRoute from './AdminRoute/AdminRoute';
 import BuyerRoute from './BuyerRoute/BuyerRoute';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
@@ -39,10 +40,7 @@ const router = createBrowserRouter([
                     },
                     {
                         path:'/products/:id',
-                        element: <ProductsCategory/>,
-                        loader: async ({params}) => {
-                            return fetch(`http://localhost:5000/products/${params.id}`)
-                          }
+                        element: <ProductsCategory/>
                     }
                     
                 ]
@@ -74,6 +72,10 @@ const router = createBrowserRouter([
                     {
                         path: '/dashboard/allbuyers',
                         element: <AdminRoute><AllBuyers/></AdminRoute>
+                    },
+                    {
+                        path: '/dashboard/reporteditems',
+                        element: <AdminRoute><ReportedItems/></AdminRoute>
                     },
                     {
                         path: '/dashboard/myorders',

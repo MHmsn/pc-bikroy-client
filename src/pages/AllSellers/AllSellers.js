@@ -66,7 +66,7 @@ const AllSellers = () => {
             {sellers.map((seller, i) => (
               <tr key={seller._id}>
                 <td>{i+1}</td>
-                <td>{seller.name}{seller.verified && <FontAwesomeIcon className='ml-2 text-blue-500' icon={faCheckCircle} />}</td>
+                <td>{seller.name}{seller.verified && <FontAwesomeIcon className='ml-2 text-blue-500' title="verified" icon={faCheckCircle} />}</td>
                 <td>{seller.email}</td>
                 <td><button onClick={() => handleDelete(seller.uid)} className='btn btn-xs btn-error btn-outline mb-2'>Delete</button><br/>{seller.verified ? <button onClick={() => handleVerify(seller.uid)} className='btn btn-xs btn-error btn-outline'>cancel verification</button>:<button onClick={() => handleVerify(seller.uid)} className='btn btn-xs btn-success btn-outline'>Verify</button>}</td>
 

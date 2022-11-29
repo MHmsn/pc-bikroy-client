@@ -16,6 +16,9 @@ const Dashboard = () => {
       <li className="mb-4">
         <NavLink to="/dashboard/allsellers">All Sellers</NavLink>
       </li>
+      <li className="mb-4">
+        <NavLink to="/dashboard/reporteditems">Reported Items</NavLink>
+      </li>
     </React.Fragment>
   );
   const sellerOptions = (
