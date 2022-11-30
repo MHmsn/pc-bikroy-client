@@ -7,7 +7,7 @@ import { AllContext } from "../../contexts/AllContextProvider";
 
 const MyOrders = () => {
   const { loading } = useContext(AllContext);
-  const url = `http://localhost:5000/orders`;
+  const url = `https://pcbikroy-server.vercel.app/orders`;
   const {
     data: orders = [],
     isLoading,

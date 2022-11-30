@@ -1,3 +1,32 @@
+# Website Name
+
+PC-Bikroy
+
+## Live Site
+https://photo-cam.web.app/
+
+# Features and Functionalities
+
+### `2 different login systems, Email-Password, google`
+### `Private protected routes and role protected routes`
+### `Registering and account creation systems`
+### `Responsive for Mobile and Desktop`
+### `MongoDB database implemented for orders products and other data`
+
+
+# Admin
+
+Email: admin@adm.com
+Password: 1admin!
+
+# Frameworks and Libraries
+
+React.JS , Tailwind(DaisyUI), React-icons, Firebase, React hot toasts, MongoDB, Node.js, Express etc
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

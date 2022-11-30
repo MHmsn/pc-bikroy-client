@@ -13,7 +13,7 @@ const ReportedItems = () => {
   } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/reporteditems`);
+      const res = await fetch(`https://pcbikroy-server.vercel.app/reporteditems`);
       const data = await res.json();
       return data;
     },
@@ -22,7 +22,7 @@ const ReportedItems = () => {
     return <Loading />;
   }
   const handleDelete = id => {
-    fetch(`http://localhost:5000/myproducts/delete?id=${id}`, {
+    fetch(`https://pcbikroy-server.vercel.app/myproducts/delete?id=${id}`, {
         method: 'DELETE'
     })
     .then( res => res.json())
@@ -34,7 +34,7 @@ const ReportedItems = () => {
     })
   }
   const handleRemoveReport = id => {
-    fetch(`http://localhost:5000/report?id=${id}`, {
+    fetch(`https://pcbikroy-server.vercel.app/report?id=${id}`, {
         method: 'PUT',
     })
     .then( res => res.json())

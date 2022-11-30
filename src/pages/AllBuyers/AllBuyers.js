@@ -6,7 +6,7 @@ import { toast } from "react-hot-toast";
 const AllBuyers = () => {
     const { loading } = useContext(AllContext);
 
-  const url = `http://localhost:5000/users?role=Buyer`;
+  const url = `https://pcbikroy-server.vercel.app/users?role=Buyer`;
   const { data: buyers = [], isLoading, refetch } = useQuery({
     queryKey: ["buyers"],
     queryFn: async () => {
@@ -20,7 +20,7 @@ const AllBuyers = () => {
     },
   });
   const handleDelete = uid => {
-    fetch(`http://localhost:5000/users?uid=${uid}`, {
+    fetch(`https://pcbikroy-server.vercel.app/users?uid=${uid}`, {
         method: 'DELETE',
         headers: {authorization:`bearer ${localStorage.getItem('accessToken')}`}
     })

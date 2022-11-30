@@ -6,7 +6,7 @@ const ProductCategories = () => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/categories")
+      .get("https://pcbikroy-server.vercel.app/categories")
       .then((res) => setCategories(res.data))
       .catch(function (error) {
         // handle error

@@ -23,7 +23,7 @@ const Register = () => {
   }
 
   const saveUser = (info) => {
-    fetch("http://localhost:5000/users", {
+    fetch("https://pcbikroy-server.vercel.app/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",

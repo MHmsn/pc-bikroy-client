@@ -8,7 +8,7 @@ const ProductCard = ({product, refetch, setBookingProduct}) => {
   const {userFromDB} = useContext(AllContext);
   const {_id, img, name, sellingPrice, time, sellerName, location, originalPrice, months, sellerVerified} = product;
   const handleReport = (id) => {
-    fetch(`http://localhost:5000/report?id=${id}`, {
+    fetch(`https://pcbikroy-server.vercel.app/report?id=${id}`, {
         method: 'PUT',
     })
     .then( res => res.json())

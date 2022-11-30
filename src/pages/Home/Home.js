@@ -11,11 +11,11 @@ const Home = () => {
         document.title = "PC-Bikroy";
       }, []);
     // useEffect(() => {
-    //     fetch('http://localhost:5000/advertisedproducts')
+    //     fetch('https://pcbikroy-server.vercel.app/advertisedproducts')
     //     .then(res => res.json())
     //     .then(data => setAdvertisedProducts(data))
     //   }, []);
-    const url = 'http://localhost:5000/advertisedproducts';
+    const url = 'https://pcbikroy-server.vercel.app/advertisedproducts';
       const {
         data: advertisedProducts = [],
         isLoading,

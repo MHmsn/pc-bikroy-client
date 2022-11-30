@@ -16,7 +16,7 @@ const Payment = () => {
       } = useQuery({
         queryKey: ["order", id],
         queryFn: async () => {
-          const res = await fetch(`http://localhost:5000/payment/${id}`);
+          const res = await fetch(`https://pcbikroy-server.vercel.app/payment/${id}`);
           const data = await res.json();
           return data;
         },

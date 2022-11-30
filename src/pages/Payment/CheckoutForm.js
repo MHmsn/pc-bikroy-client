@@ -13,7 +13,7 @@ const CheckoutForm = ({ order }) => {
 
 
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://pcbikroy-server.vercel.app/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -72,7 +72,7 @@ const CheckoutForm = ({ order }) => {
         }
         setSuccess('Payment completed. Congrats!');
         setTransactionId(paymentIntent.id);
-        fetch('http://localhost:5000/payments', {
+        fetch('https://pcbikroy-server.vercel.app/payments', {
             method: 'POST',
             headers: {
                 "content-type": 'application/json'
@@ -121,8 +121,12 @@ const CheckoutForm = ({ order }) => {
         </button>
       </form>
       <p className="text-xl text-red-500 mt-4">{cardError}</p>
-      <p className="text-xl text-green-500 mt-4">{success}</p>
-      <p>Your transaction ID is L <span className="font-bold"> {transactionId}</span></p>
+      {
+        success && <>
+        <p className="text-xl text-green-500 mt-4">{success}</p>
+      <p>Your transaction ID is  <span className="font-bold"> {transactionId}</span></p>
+        </>
+      }
     </div>
   );
 };

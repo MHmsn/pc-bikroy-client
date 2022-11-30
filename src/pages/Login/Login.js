@@ -26,7 +26,7 @@ const Login = () => {
   } = useForm();
 
   if (token) {
-    fetch(`http://localhost:5000/user?email=${userEmail}`, {
+    fetch(`https://pcbikroy-server.vercel.app/user?email=${userEmail}`, {
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
@@ -49,7 +49,7 @@ const Login = () => {
           uid: user.uid,
           verified: false,
         };
-        fetch("http://localhost:5000/users", {
+        fetch("https://pcbikroy-server.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

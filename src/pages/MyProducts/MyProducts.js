@@ -6,7 +6,7 @@ import { AllContext } from '../../contexts/AllContextProvider';
 
 const MyProducts = () => {
     const { userFromDB, loading } = useContext(AllContext);
-  const url = `http://localhost:5000/products?selleruid=${userFromDB.uid}`;
+  const url = `https://pcbikroy-server.vercel.app/products?selleruid=${userFromDB.uid}`;
   const { data: products = [], isLoading, refetch } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
@@ -17,7 +17,7 @@ const MyProducts = () => {
   });
 
   const handleAdvertise = id => {
-    fetch(`http://localhost:5000/myproducts/advertise?id=${id}`, {
+    fetch(`https://pcbikroy-server.vercel.app/myproducts/advertise?id=${id}`, {
         method: 'PUT',
     })
     .then( res => res.json())
@@ -29,7 +29,7 @@ const MyProducts = () => {
     })
   }
   const handleDelete = id => {
-    fetch(`http://localhost:5000/myproducts/delete?id=${id}`, {
+    fetch(`https://pcbikroy-server.vercel.app/myproducts/delete?id=${id}`, {
         method: 'DELETE'
     })
     .then( res => res.json())

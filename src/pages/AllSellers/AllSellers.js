@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const AllSellers = () => {
   const { loading } = useContext(AllContext);
-  const url = `http://localhost:5000/users?role=Seller`;
+  const url = `https://pcbikroy-server.vercel.app/users?role=Seller`;
   const {
     data: sellers = [],
     isLoading,
@@ -26,7 +26,7 @@ const AllSellers = () => {
     },
   });
   const handleVerify = (uid) => {
-    fetch(`http://localhost:5000/users/verify?uid=${uid}`, {
+    fetch(`https://pcbikroy-server.vercel.app/users/verify?uid=${uid}`, {
       method: "PUT",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -41,7 +41,7 @@ const AllSellers = () => {
       });
   };
   const handleDelete = (uid) => {
-    fetch(`http://localhost:5000/users?uid=${uid}`, {
+    fetch(`https://pcbikroy-server.vercel.app/users?uid=${uid}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

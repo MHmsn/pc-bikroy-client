@@ -43,7 +43,7 @@ const ContextProvider = ({ children }) => {
       setUser(currentUser);
       if(localStorage.getItem('accessToken') && currentUser){
         setLoading(true);
-        fetch(`http://localhost:5000/user?email=${currentUser.email}`,{
+        fetch(`https://pcbikroy-server.vercel.app/user?email=${currentUser.email}`,{
       headers: {
         authorization: `bearer ${localStorage.getItem('accessToken')}`
       }
@@ -54,7 +54,9 @@ const ContextProvider = ({ children }) => {
       setLoading(false);
     })
       }
-      setLoading(false);
+      else{
+        setLoading(false);
+      }
     
     });
     return () => {

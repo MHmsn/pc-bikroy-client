@@ -26,7 +26,7 @@ const BookingModal = ({bookingProduct, setBookingProduct, refetch}) => {
       paid: false
     };
 
-    fetch("http://localhost:5000/orders", {
+    fetch("https://pcbikroy-server.vercel.app/orders", {
       method: "POST",
       headers: {
         "content-type": "application/json",
