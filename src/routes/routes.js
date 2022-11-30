@@ -10,6 +10,7 @@ import Home from '../pages/Home/Home';
 import Login from '../pages/Login/Login';
 import MyOrders from '../pages/MyOrders/MyOrders';
 import MyProducts from '../pages/MyProducts/MyProducts';
+import Payment from '../pages/Payment/Payment';
 import Products from '../pages/Products/Products';
 import ProductsCategory from '../pages/ProductsCategory/ProductsCategory';
 import ProductsHome from '../pages/ProductsHome/ProductsHome';
@@ -80,6 +81,10 @@ const router = createBrowserRouter([
                     {
                         path: '/dashboard/myorders',
                         element: <BuyerRoute><MyOrders/></BuyerRoute>
+                    },
+                    {
+                        path: '/dashboard/myorders/payment/:id',
+                        element: <BuyerRoute><Payment/></BuyerRoute>
                     },
                     {
                         path: '/dashboard/myproducts',

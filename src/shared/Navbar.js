@@ -1,38 +1,48 @@
 import React, { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AllContext } from "../contexts/AllContextProvider";
-import cpu from '../cpu.png';
+import cpu from "../cpu.png";
+import { FaSun } from "react-icons/fa";
+import { FaMoon } from "react-icons/fa";
 
 const Navbar = () => {
-  const {user, logOut, setUserFromDB} = useContext(AllContext);
+  const { user, dark, setDark, logOut, setUserFromDB } = useContext(AllContext);
   const navigate = useNavigate();
-  const handleLogOut = () =>{
+
+  const handleDarkMode = () => {
+    localStorage.setItem("isDark", !dark);
+    setDark(!dark);
+  };
+
+  const handleLogOut = () => {
     logOut()
-    .then(() => {
-      localStorage.setItem('accessToken', '');
-      setUserFromDB(null);
-      navigate('/');
-    })
-    .catch(e => console.error(e.message))
-  }
+      .then(() => {
+        localStorage.setItem("accessToken", "");
+        setUserFromDB(null);
+        navigate("/");
+      })
+      .catch((e) => console.error(e.message));
+  };
   const navbarOptions = (
     <React.Fragment>
       <li className="mx-1">
-        <NavLink to='/'>Home</NavLink>
+        <NavLink to="/">Home</NavLink>
       </li>
       <li className="mx-1">
-        <NavLink to='/products'>Products</NavLink>
+        <NavLink to="/products">Products</NavLink>
       </li>
       <li className="mx-1">
-        <NavLink to='/blogs'>Blogs</NavLink>
+        <NavLink to="/blogs">Blogs</NavLink>
       </li>
-      {user?.uid && <li className="mx-1">
-        <NavLink to='/dashboard'>Dashboard</NavLink>
-      </li>}
+      {user?.uid && (
+        <li className="mx-1">
+          <NavLink to="/dashboard">Dashboard</NavLink>
+        </li>
+      )}
     </React.Fragment>
   );
   return (
-    <div id='navbar'>
+    <div id="navbar">
       <div className="navbar bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
@@ -59,15 +69,30 @@ const Navbar = () => {
               {navbarOptions}
             </ul>
           </div>
-          <Link to='/' className="btn btn-ghost normal-case text-xl"><img src={cpu} alt=''/>PC-Bikroy</Link>
+          <Link to="/" className="btn btn-ghost normal-case text-xl">
+            <img src={cpu} alt="" />
+            PC-Bikroy
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal p-0">
-            {navbarOptions}
-          </ul>
+          <ul className="menu menu-horizontal p-0">{navbarOptions}</ul>
         </div>
         <div className="navbar-end">
-          {user?.uid ? <button onClick={handleLogOut} className="btn btn-outline">Log Out</button>:<Link to='/login' className="btn btn-outline">Log in</Link>}
+          <label className="swap swap-rotate text-4xl mr-4">
+            {/* <!-- this hidden checkbox controls the state --> */}
+            <input type="checkbox"  onClick={handleDarkMode} defaultChecked={dark? true: false}/>
+            <div className="swap-on"><FaMoon/></div>
+            <div className="swap-off"><FaSun/></div>
+          </label>
+          {user?.uid ? (
+            <button onClick={handleLogOut} className="btn btn-outline">
+              Log Out
+            </button>
+          ) : (
+            <Link to="/login" className="btn btn-outline">
+              Log in
+            </Link>
+          )}
         </div>
       </div>
     </div>

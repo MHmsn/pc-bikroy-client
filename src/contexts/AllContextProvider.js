@@ -15,6 +15,7 @@ export const AllContext = createContext();
 const auth = getAuth(app);
 
 const ContextProvider = ({ children }) => {
+  const [dark, setDark] = useState(JSON.parse(localStorage.getItem("isDark")));
   const [user, setUser] = useState(null);
   const [userFromDB, setUserFromDB] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -70,6 +71,8 @@ const ContextProvider = ({ children }) => {
     providerLogin,
     createUser,
     logOut,
+    dark,
+    setDark
   };
   return <AllContext.Provider value={allInfo}>{children}</AllContext.Provider>;
 };

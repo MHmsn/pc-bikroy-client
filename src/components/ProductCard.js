@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { AllContext } from "../contexts/AllContextProvider";
 
-const ProductCard = ({product, refetch}) => {
+const ProductCard = ({product, refetch, setBookingProduct}) => {
   const {userFromDB} = useContext(AllContext);
   const {_id, img, name, sellingPrice, time, sellerName, location, originalPrice, months, sellerVerified} = product;
   const handleReport = (id) => {
@@ -20,7 +20,7 @@ const ProductCard = ({product, refetch}) => {
     })
   }
   return (
-    <div className="card h-full w-fit mx-auto bg-gray-200 shadow-xl text-start">
+    <div className="card h-full w-fit mx-auto bg-base-300 shadow-xl text-start">
       <figure>
         <img src={img} alt="" />
       </figure>
@@ -36,7 +36,7 @@ const ProductCard = ({product, refetch}) => {
         <h4 className="text-lg font-semibold">used: {months/12 && `${parseInt(months/12)} year`} {months%12 === 0? <></>:`${months%12} month`}</h4>
       </div>
       <div className="text-end" title={userFromDB?.role === 'Buyer' ? "Report" : "You have to be a buyer to report items"}><button onClick={() => handleReport(_id)} className="btn btn-error btn-outline mr-4 mb-4">Report Item</button></div>
-      <div className="text-end" title={userFromDB?.role === 'Buyer' ? "Booking" : "You have to be a user to book items"}><label htmlFor="booking-modal" className="btn btn-primary mr-4 mb-4" disabled={userFromDB?.role !== 'Buyer'}>Book</label></div>
+      <div className="text-end" title={userFromDB?.role === 'Buyer' ? "Booking" : "You have to be a user to book items"}><label htmlFor="booking-modal" className="btn btn-primary mr-4 mb-4" onClick={() => setBookingProduct(product)} disabled={userFromDB?.role !== 'Buyer'}>Book</label></div>
     </div>
   );
 };

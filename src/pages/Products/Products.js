@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
-import BookingModal from '../../components/BookingModal';
 import ProductCategories from '../../components/ProductCategories';
 
 const Products = () => {
@@ -11,7 +10,7 @@ const Products = () => {
         <div>
                 <ProductCategories/>
                 <Outlet/>
-                <BookingModal/>
+                
         </div>
     );
 };
