@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import BookingModal from '../BookingModal';
 import Loading from '../Loading';
 import ProductCard from '../ProductCard';
+import { AllContext } from '../../contexts/AllContextProvider';
 
 const AdvertisedSection = ({advertisedProducts, bookingProduct, setBookingProduct, refetch, isLoading}) => {
-    if(isLoading){
+    const {loading} = useContext(AllContext);
+    if(loading || isLoading){
         return <Loading/>
     }
     return (
@@ -13,13 +15,7 @@ const AdvertisedSection = ({advertisedProducts, bookingProduct, setBookingProduc
             <div className='grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                 {advertisedProducts.map(product => <ProductCard key={product._id} setBookingProduct={setBookingProduct} product={product}/>)}
             </div>
-            {bookingProduct && (
-        <BookingModal
-          bookingProduct={bookingProduct}
-          setBookingProduct={setBookingProduct}
-          refetch={refetch}
-        />
-      )}
+            {bookingProduct && <BookingModal bookingProduct={bookingProduct} setBookingProduct={setBookingProduct} refetch={refetch}/>}
         </section>
     );
 };

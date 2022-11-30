@@ -21,12 +21,14 @@ const ProductCategories = () => {
     <div className="mb-16">
       <h2 className="text-3xl font-bold">Browse Products: </h2>
       <br />
+      <div className="grid grid-cols-3 gap-4 md:flex md:justify-center text-center">
       {categories.map((category) => (
         <Link key={category._id} to={`/products/${category._id}`}>
-          <button className="mx-2 btn btn-primary">{category.name}</button>
+          <button className="mx-2 btn btn-primary w-full">{category.name}</button>
         </Link>
       ))}
-    </div>
+      </div>
+    </div> 
   );
 };
 

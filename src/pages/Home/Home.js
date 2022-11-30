@@ -32,7 +32,7 @@ const Home = () => {
         <div>
         <Slider/>
         <ProductCategories/>
-        {advertisedProducts?.length > 0 && <AdvertisedSection bookingProduct={bookingProduct} setBookingProduct={setBookingProduct} advertisedProducts={advertisedProducts} refetch={refetch} isLoading={isLoading}/>}
+        { advertisedProducts?.length > 0 && <AdvertisedSection bookingProduct={bookingProduct} setBookingProduct={setBookingProduct} advertisedProducts={advertisedProducts} refetch={refetch} isLoading={isLoading}/>}
         <HomeHero/>
         
         </div>
