@@ -66,28 +66,28 @@ const BookingModal = ({bookingProduct, setBookingProduct, refetch}) => {
             <input
               type="text"
               name="buyerName"
-              value={userFromDB.name || ''}
+              value={userFromDB?.name || ''}
               className="input w-full input-bordered border-gray-300"
               disabled
             />
             <input
               type="text"
               name="buyerEmail"
-              value={userFromDB.email || ''}
+              value={userFromDB?.email || ''}
               className="input w-full input-bordered border-gray-300"
               disabled
             />
             <input
               type="text"
               name="itemName"
-              value={bookingProduct.name || ''}
+              value={bookingProduct?.name || ''}
               className="input w-full input-bordered border-gray-300"
               disabled
             />
             <input
               type="text"
               name="price"
-              value={bookingProduct.sellingPrice || ''}
+              value={bookingProduct?.sellingPrice || ''}
               className="input w-full input-bordered border-gray-300"
               disabled
             />

@@ -6,8 +6,8 @@ import Loading from "../../components/Loading";
 import { AllContext } from "../../contexts/AllContextProvider";
 
 const MyOrders = () => {
-  const { loading } = useContext(AllContext);
-  const url = `https://pcbikroy-server.vercel.app/orders`;
+  const { loading, userFromDB } = useContext(AllContext);
+  const url = `https://pcbikroy-server.vercel.app/orders?uid=${userFromDB.uid}`;
   const {
     data: orders = [],
     isLoading,

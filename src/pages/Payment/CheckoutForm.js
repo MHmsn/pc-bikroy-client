@@ -66,7 +66,7 @@ const CheckoutForm = ({ order }) => {
       if(paymentIntent.status === "succeeded"){
         const payment ={
             price,
-            transactionId: paymentIntent.id.at,
+            transactionId: paymentIntent.id,
             buyerEmail,
             orderId: productID
         }
