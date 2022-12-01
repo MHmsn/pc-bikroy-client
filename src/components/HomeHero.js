@@ -7,7 +7,7 @@ const HomeHero = () => {
         <div className="hero-content bg-base-200 rounded-xl flex-col lg:flex-row">
           <img
             src="https://www.laptopsdirect.co.uk/files/images/ld/msi-gaming-mobile-landing-banner.jpg"
-            className="max-w-sm rounded-lg shadow-2xl"
+            className="lg:max-w-sm rounded-lg shadow-2xl"
           alt=""/>
           <div>
             <h1 className="text-5xl font-bold">Buy used Computer Parts!</h1>

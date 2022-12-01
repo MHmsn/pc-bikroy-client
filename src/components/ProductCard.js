@@ -33,7 +33,7 @@ const ProductCard = ({product, refetch, setBookingProduct}) => {
         <h4 className="text-lg font-semibold">Seller: {sellerName} {sellerVerified && <FontAwesomeIcon title="verified" className='ml-2 text-blue-500' icon={faCheckCircle} />}</h4>
         <h4 className="text-lg font-semibold">Location: {location}</h4>
         <h4 className="text-lg font-semibold">Original Price: {originalPrice}</h4>
-        <h4 className="text-lg font-semibold">used: {months/12 && `${parseInt(months/12)} year`} {months%12 === 0? <></>:`${months%12} month`}</h4>
+        <h4 className="text-lg font-semibold">used: {parseInt(months/12) !== 0 && `${parseInt(months/12)} year`} {months%12 === 0? <></>:`${months%12} month`}</h4>
       </div>
       <div className="text-end" title={userFromDB?.role === 'Buyer' ? "Report" : "You have to be a buyer to report items"}><button onClick={() => handleReport(_id)} className="btn btn-error btn-outline mr-4 mb-4">Report Item</button></div>
       <div className="text-end" title={userFromDB?.role === 'Buyer' ? "Booking" : "You have to be a user to book items"}><label htmlFor="booking-modal" className="btn btn-primary mr-4 mb-4" onClick={() => setBookingProduct(product)} disabled={userFromDB?.role !== 'Buyer'}>Book</label></div>
