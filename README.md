@@ -3,7 +3,7 @@
 PC-Bikroy
 
 ## Live Site
-https://photo-cam.web.app/
+https://pc-bikroy.web.app/
 
 # Features and Functionalities
 
